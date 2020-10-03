@@ -3,7 +3,7 @@ import os
 from glob import glob
 import shutil
 from datetime import datetime
-from scipy.ndimage import imread
+from PIL import Image
 
 ##
 # Data
@@ -44,14 +44,16 @@ def clear_dir(directory):
 
 def get_test_frame_dims():
     img_path = glob(os.path.join(TEST_DIR, '*/*'))[0]
-    img = imread(img_path, mode='RGB')
+    #img = imread(img_path, mode='RGB')
+    img = np.array(Image.open(img_path))
     shape = np.shape(img)
 
     return shape[0], shape[1]
 
 def get_train_frame_dims():
     img_path = glob(os.path.join(TRAIN_DIR, '*/*'))[0]
-    img = imread(img_path, mode='RGB')
+    #img = imread(img_path, mode='RGB')
+    img = np.array(Image.open(img_path))
     shape = np.shape(img)
 
     return shape[0], shape[1]
